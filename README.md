@@ -27,6 +27,25 @@ This project features a custom-designed robotic arm simulated in the **MuJoCo ph
 
 ---
 
+### 🧩 Workflow Overview
+
+Below is the step-by-step flow of the system from initialization to continuous loop execution:
+
+1. ✅ **Application is started**, and the GUI window is launched.
+2. 🖥️ **MuJoCo Viewer** is initialized and displays the simulation.
+3. 🎯 **Camera calibration** is performed using known reference points.
+4. 🔁 **Main loop begins**:
+   - 🎥 The camera detects the target object in the scene.
+   - 📍 The object's world coordinates are estimated via **homography**.
+   - 📡 These coordinates are converted to robot units and sent to the robotic arm.
+   - 🤖 The robot arm **opens the gripper**, moves to the object's location, and **closes the gripper**.
+   - 🎯 It then moves toward the **predefined target drop position**.
+   - 📦 Once the position is reached, the gripper **opens** and drops the object.
+   - 🔄 The robotic arm returns to its **base position**.
+5. 🔁 The loop continues for the next detected object.
+
+---
+
 ### 🔬 Highlights
 
 - ✅ Fully custom inverse kinematics logic  
