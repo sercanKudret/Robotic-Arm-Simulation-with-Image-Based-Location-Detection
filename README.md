@@ -52,3 +52,39 @@ Below is the step-by-step flow of the system from initialization to continuous l
 - ✅ Homography-based world position estimation  
 - ✅ Real-time interaction with MuJoCo simulation  
 - ✅ FreeCAD modeling and MuJoCo XML integration
+
+&nbsp;
+
+<!-- Scene -->
+<p><b>Scene</b></p>
+<img src="https://github.com/sercanKudret/Robotic-Arm-Simulation-with-Image-Based-Location-Detection/blob/main/images/1.jpg" style="width:50%; height:auto;">
+<hr>
+
+<!-- Calib. & Target Detection -->
+<p><b>Calib. & Target Detection</b></p>
+<img src="https://github.com/sercanKudret/Robotic-Arm-Simulation-with-Image-Based-Location-Detection/blob/main/images/2.jpg" style="width:50%; height:auto;">
+<img src="https://github.com/sercanKudret/Robotic-Arm-Simulation-with-Image-Based-Location-Detection/blob/main/images/3.jpg" style="width:50%; height:auto;">
+<hr>
+
+<!-- Axes -->
+<p><b>Axes</b></p>
+<img src="https://github.com/sercanKudret/Robotic-Arm-Simulation-with-Image-Based-Location-Detection/blob/main/images/4.jpg" style="width:50%; height:auto;">
+<hr>
+
+<!-- IK Solve -->
+<p><b>IK Solve</b></p>
+<img src="https://github.com/sercanKudret/Robotic-Arm-Simulation-with-Image-Based-Location-Detection/blob/main/images/5.jpg" style="width:50%; height:auto;">
+<img src="https://github.com/sercanKudret/Robotic-Arm-Simulation-with-Image-Based-Location-Detection/blob/main/images/6.jpg" style="width:50%; height:auto;">
+<hr>
+
+<!-- GUI -->
+<p><b>GUI</b></p>
+<img src="https://github.com/sercanKudret/Robotic-Arm-Simulation-with-Image-Based-Location-Detection/blob/main/images/7.jpg" style="width:50%; height:auto;">
+<hr>
+
+<!-- Diagram -->
+<p><b>Diagram</b></p>
+<img src="https://github.com/sercanKudret/Robotic-Arm-Simulation-with-Image-Based-Location-Detection/blob/main/images/8.jpg" style="width:50%; height:auto;">
+<hr>
+
+
