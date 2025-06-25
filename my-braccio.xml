@@ -1,0 +1,109 @@
+<mujoco model="my-braccio">
+  <compiler angle="radian" meshdir="assets/"/>
+
+  <option cone="elliptic" impratio="10"/>
+
+  <asset>
+    <mesh name="Base" file="Base.STL"/>
+    <mesh name="Rolling_Base" file="Rolling_Base.STL"/>
+    <mesh name="Arm_1" file="Arm.STL"/>
+    <mesh name="Arm_2" file="Arm.STL"/>
+    <mesh name="Wrist" file="Wrist.STL"/>
+    <mesh name="Hand" file="Hand.STL"/>
+    <mesh name="Sup_Servo" file="Sup_Servo.STL"/>
+    <mesh name="Sup_Finger_Base_1" file="Sup_Finger_Base.STL"/>
+    <mesh name="Sup_Finger_Base_2" file="Sup_Finger_Base.STL"/>
+    <mesh name="Finger_1" file="Finger.STL"/>
+    <mesh name="Finger_2" file="Finger.STL"/>
+    <mesh name="Sup_Finger_1" file="Sup_Finger.STL"/>
+    <mesh name="Sup_Finger_2" file="Sup_Finger.STL"/>
+    <mesh name="Sup_Finger_3" file="Sup_Finger.STL"/>
+    <mesh name="Sup_Finger_4" file="Sup_Finger.STL"/>
+    <material name="red" rgba="1 0 0 1"/>
+    <material name="blue" rgba="0 0 1 1"/>
+    <material name="green" rgba="0 1 0 1"/>
+    <material name="purple" rgba="0.5 0.1 0.6 1" specular="0.5" shininess="0.7"/>
+    <material name="yellow" rgba="1 1 0 1"/>
+    <material name="orange" rgba="0.5 0.25 0.0 1.0"/>
+    <material name="cream_yellowish" rgba="1.0 0.976 0.749 1.0"/>
+  </asset>
+
+  <default>
+    <joint armature="0.1" damping="0.1" limited="true" frictionloss="0.1" range="-3.14 3.14"/>
+    <position kp="50" dampratio="1" forcerange="-35 35" ctrlrange="-3.14158 3.14158"/>
+  </default>
+
+  <worldbody>
+    <body name="Base" pos="0 0 0">
+      <geom name="base_geom" type="mesh" mesh="Base" contype="1" conaffinity="1" material="orange"/>
+
+      <body name="Rolling_Base" pos="0 0 0">
+        <joint name="base_rotation" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"/>
+        <geom name="rolling_base_geom" type="mesh" contype="0" conaffinity="0" mesh="Rolling_Base" material="orange"/>
+
+        <body name="Arm_1" pos="0 0 0.065" euler="0 0 0">
+          <joint name="shoulder_joint" type="hinge" pos="0 0 0" axis="1 0 0" range="-1.22173 1.22173"/>
+          <geom name="arm_1_geom" type="mesh" mesh="Arm_1" material="orange"/>
+          <inertial pos="0 0.06 0.03" mass="0.16" diaginertia="0.00021 0.00016 0.00007"/>
+
+          <body name="Arm_2" pos="0 0 0.12" euler="0 0 0">
+            <joint name="elbow_joint" type="hinge" pos="0 0 0" axis="1 0 0" range="-1.570796 1.570796"/>
+            <geom name="arm_2_geom" type="mesh" mesh="Arm_2" material="orange"/>
+
+            <body name="Wrist" pos="0 0 0.12" euler="-1.570796 0 0">
+              <joint name="wrist_joint" type="hinge" pos="0 0 0" axis="1 0 0" range="-1.570796 1.570796"/>
+              <geom name="wrist_geom" type="mesh" mesh="Wrist" material="orange"/>
+
+              <body name="Hand" pos="0 -0.062 0">
+                <joint name="hand_joint" type="hinge" pos="0 0 0" axis="0 1 0" range="-1.570796 1.570796"/>
+                <geom name="hand_geom" type="mesh" mesh="Hand" material="cream_yellowish"/>
+
+                <body name="Sup_Servo" pos="0.01210 -0.034 0.01250" euler="-1.570796 1.500983 1.570796">
+                  <joint name="sup_servo_joint" type="hinge" pos="0 0 0" axis="1 0 0" range="-0.2 0.1"/>
+                  <geom name="sup_servo_geom" type="mesh" mesh="Sup_Servo" material="cream_yellowish"/>
+
+                  <body name="Sup_Finger_Base_1" pos="0 0 0" euler="1.570796 0 0">
+                    <geom name="sup_finger_base_geom" type="mesh" mesh="Sup_Finger_Base_1" material="cream_yellowish"/>
+
+                    <body name="Finger_1" pos="0.005 0.00544 0.02955" euler="0 0 0">
+                      <geom name="finger_geom" type="mesh" mesh="Finger_1" material="cream_yellowish" friction="10 1 1"/>
+
+                    </body>
+                  </body>
+                </body>
+
+                <body name="Sup_Finger_Base_2" pos="-0.01205 -0.034 0.01250" euler="1.570796 -0.436332 -1.570796">
+                  <geom name="sup_finger_base_2_geom" type="mesh" mesh="Sup_Finger_Base_2" material="cream_yellowish"/>
+                  <joint name="finger_sync_joint" type="hinge" pos="0 0 0" axis="1 0 0" range="-0.1 0.2"/>
+                  
+                  <body name="Finger_2" pos="0.005 0.00544 0.02955" euler="-0.365472 0.000000 3.141593">
+                    <geom name="finger_2_geom" type="mesh" mesh="Finger_2" material="cream_yellowish" friction="10 1 1"/>
+
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="base_motor" joint="base_rotation"/>
+    <position name="shoulder_motor" joint="shoulder_joint"/>
+    <position name="elbow_motor" joint="elbow_joint" />
+    <position name="wrist_motor" joint="wrist_joint"/>
+    <position name="hand_motor" joint="hand_joint"/>
+    <position name="sup_servo_motor" gear="20" joint="sup_servo_joint"/>
+  </actuator>
+
+<equality>
+  <joint joint1="sup_servo_joint" joint2="finger_sync_joint" polycoef="0 -1"/>
+</equality>
+
+<keyframe>
+  <key name="home" qpos="0 0 0 0 0 0 0  0 0 0 0 0 0 0" ctrl="0 0 0 0 0 0"/> <!-- qpos'taki son 7 basamak, sahneye eklenen spehere objesi için-->
+</keyframe>
+
+</mujoco>
